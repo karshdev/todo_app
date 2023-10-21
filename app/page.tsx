@@ -23,7 +23,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-4">TODO App</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">TODO App</h1>
       <AddTodoForm onAdd={handleAddTodo} />
       <TodoList todos={todos} />
     </div>
