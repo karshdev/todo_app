@@ -6,6 +6,7 @@ import {
   text,
   timestamp,
 } from 'drizzle-orm/pg-core';
+import { varchar } from 'drizzle-orm/mysql-core';
  
 // Use this object to send drizzle queries to your DB
 export const db = drizzle(sql);
@@ -14,9 +15,8 @@ export const ExampleTable = pgTable(
   'users',
   {
     id: serial('id').primaryKey(),
-    name: text('name').notNull(),
-    email: text('email').notNull(),
-    image: text('image').notNull(),
-    createdAt: timestamp('createdAt').defaultNow().notNull(),
+    name: varchar('name',{length:256}).notNull(),
+    email: varchar('email',{length:256}).notNull(),
+   
   }
 );
