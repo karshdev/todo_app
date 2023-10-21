@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "libs/drizzle.js", "app/api/users/route.js", "components/AddTodoForm.js", "app/layout.js", "app/page.js", "components/TodoItem.js", "components/TodoList.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "libs/drizzle.js", "app/api/todo/route.js", "components/AddTodoForm.js", "app/layout.js", "app/page.js", "components/TodoItem.js", "components/TodoList.js"],
   "exclude": ["node_modules"]
 }
