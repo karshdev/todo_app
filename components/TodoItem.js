@@ -1,10 +1,7 @@
 import React from 'react';
 
-interface TodoItemProps {
-  todo: Todo;
-}
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo }) => (
+const TodoItem = ({ todo }) => (
   <li className="flex items-center justify-between p-4">
     <span className={`text-lg ${todo.completed ? 'line-through' : ''}`}>
       {todo.text}

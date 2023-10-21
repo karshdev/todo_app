@@ -1,15 +1,13 @@
 "use client"
 import React, { useState } from 'react';
 
-interface AddTodoFormProps {
-  onAdd: (text: string) => void;
-}
 
-const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAdd }) => {
+
+const AddTodoForm = ({ onAdd }) => {
   const [text, setText] = useState('');
   const [select, setSelect] = useState('Home');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim() !== '') {
       onAdd(text);
