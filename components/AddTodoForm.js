@@ -3,17 +3,32 @@ import React, { useState } from 'react';
 
 
 
-const AddTodoForm = ({ onAdd }) => {
+const AddTodoForm = ({ onAdd ,setTodos}) => {
   const [text, setText] = useState('');
   const [select, setSelect] = useState('Home');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (text.trim() !== '') {
-      onAdd(text);
-      setText('');
+    if(!text){
+      return false;
     }
+
+      const response=await fetch(`/api/todo`,{
+        method:"POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data:text,cat:select })
+      })
+      const res=await response.json()
+      if(res.message==="Success"){
+        console.log("Successfully added to db");
+      }else{
+       console.log("Some error");
+      }
   };
+
+
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 w-[100%] flex items-center justify-center flex-col gap-3">
@@ -25,7 +40,7 @@ const AddTodoForm = ({ onAdd }) => {
         className="p-2 border border-gray-300 w-[50%] "
       />
 
-<select className='p-2 border border-gray-300 w-[50%] '>
+<select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e)=>setSelect(e.target.value)}>
   <option value="gym">GYM</option>
   <option value="routine">Routine</option>
   <option value="home">Home</option>
