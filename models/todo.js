@@ -11,22 +11,14 @@ const todoSchema = new Schema({
     },
     category: {
         type: String,
-        ref: 'Category', 
+        required:true 
       },
   });
   
   export const Todo = mongoose.models.Todo || mongoose.model('Todo', todoSchema);
-  const categorySchema = new Schema({
-    name: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    todos: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Todo',
-    }],
-  }); 
-export const Category = mongoose.models.Category || mongoose.model('Category', categorySchema);
+
+  
+
+
 
 

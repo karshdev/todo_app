@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Category = async () => {
+const Category =  () => {
   
   return (
     <div>
