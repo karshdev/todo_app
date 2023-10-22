@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../../libs/mongodb";
-import Todo from "../../../../models/Todo";
+import Todo from "../../../../models/todo.js";
 
 
 export async function DELETE(req,{params}){
