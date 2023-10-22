@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "drizzle-kit generate:pg",
+    "introspect":"drizzle-kit introspect:pg"
   },
   "dependencies": {
     "@vercel/postgres": "^0.5.0",

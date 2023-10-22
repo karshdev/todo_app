@@ -12,7 +12,6 @@ export async function GET(request) {
 
  //POST
  export async function POST(request) {
-  console.log("request",request);
   try {
     const { data, cat } = await request.json();
     console.log(data, cat);
@@ -27,7 +26,7 @@ export async function GET(request) {
       .values(newTodo)
       .returning();
 
-    console.log("insertResult", insertResult);
+      
     if (insertResult.length > 0) {
       return NextResponse.json({ message: "Success", data: insertResult[0] });
     } else {
