@@ -3,29 +3,12 @@ import React, { useState } from 'react';
 
 
 
-const AddTodoForm = ({ onAdd ,setTodos}) => {
+const AddTodoForm = ({ onAdd, setTodos }) => {
   const [text, setText] = useState('');
   const [select, setSelect] = useState('Home');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(!text){
-      return false;
-    }
+  const handleSubmit = (e) => {
 
-      const response=await fetch(`/api/todo`,{
-        method:"POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ data:text,cat:select })
-      })
-      const res=await response.json()
-      if(res.message==="Success"){
-        console.log("Successfully added to db");
-      }else{
-       console.log("Some error");
-      }
   };
 
 
@@ -40,13 +23,13 @@ const AddTodoForm = ({ onAdd ,setTodos}) => {
         className="p-2 border border-gray-300 w-[50%] "
       />
 
-<select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e)=>setSelect(e.target.value)}>
-  <option value="gym">GYM</option>
-  <option value="routine">Routine</option>
-  <option value="home">Home</option>
-  <option value="office">Office</option>
-</select>
-      
+      <select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e) => setSelect(e.target.value)}>
+        <option value="gym">GYM</option>
+        <option value="routine">Routine</option>
+        <option value="home">Home</option>
+        <option value="office">Office</option>
+      </select>
+
       <button type="submit" className="ml-2 p-2 bg-blue-500 text-white">
         Add
       </button>

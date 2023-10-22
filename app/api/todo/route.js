@@ -1,40 +1,20 @@
-import { NextResponse } from 'next/server';
-import {db,todo} from '@/lib/drizzle'
 
-
-
-
-//GET
-export async function GET(request) {
-    return NextResponse.json("hello")
- 
-}
-
- //POST
- export async function POST(request) {
-  try {
-    const { data, cat } = await request.json();
-    console.log(data, cat);
-    const newTodo = {
-      taskname: data,
-      isDone: false,
-      category_name: cat, //  cat is the category name
-    };
-    // Insert the new todo into the database
-    const insertResult = await db
-      .insert(todo)
-      .values(newTodo)
-      .returning();
-
-      
-    if (insertResult.length > 0) {
-      return NextResponse.json({ message: "Success", data: insertResult[0] });
-    } else {
-      return NextResponse.json({ message: "Error inserting todo" });
-    }
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ message: "Error" });
+import { NextResponse } from "next/server";
+import connectmongoDB from '../../../libs/mongodb'
+import {Todo} from "../../../models/Todo";
+export async function POST(req) {
+  await connectmongoDB()
+  const {taskname,cat}=await req.json()
+  try{
+const addTodo=await Todo.create({
+  taskname:taskname,
+  category:cat,
+})
+return NextResponse.json({message:"added"},{status:200})
+  }catch(err){
+    console.log(err);
+    return NextResponse.json({message:"failed"},{status:200})
   }
 }
+
 

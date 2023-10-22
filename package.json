@@ -6,13 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "migrate": "drizzle-kit generate:pg",
-    "introspect":"drizzle-kit introspect:pg"
+    "lint": "next lint"
   },
   "dependencies": {
     "@vercel/postgres": "^0.5.0",
     "drizzle-orm": "^0.28.6",
+    "mongoose": "^7.6.3",
     "next": "13.5.6",
     "pg": "^8.11.3",
     "react": "^18",
