@@ -1,7 +1,6 @@
-
 import { NextResponse } from "next/server";
 import connectmongoDB from '../../../libs/mongodb'
-import {Todo} from "../../../models/Todo";
+import {Todo}  from "../../../models/Todo";
 export async function POST(req) {
   await connectmongoDB()
   const {taskname,cat}=await req.json()
