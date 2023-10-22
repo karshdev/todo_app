@@ -1,21 +1,18 @@
 "use client"
 import React, { useState } from 'react';
-import TodoList from './TodoList';
-import { todo } from 'node:test';
+
 
 
 
 const AddTodoForm = () => {
   const [text, setText] = useState('');
-  const [select, setSelect] = useState('Home');
-  const[todos,setTodos]=useState([])
-
+  const [select, setSelect] = useState('GYM');
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!text){
       return false;
     }
-
       const response=await fetch(`/api/todo`,{
         method:"POST",
         headers: {
@@ -23,16 +20,14 @@ const AddTodoForm = () => {
         },
         body: JSON.stringify({ taskname:text,cat:select })
       })
+        
       const res=await response.json()
-      console.log("Res",res);
-      if(res){
-       setTodos(res)
+        if(res.message==="added"){
+       window.location.reload()
       }else{
-       console.log("Some error");
+         console.log("Some error");
       }
   };
-
-
 
   return (
     <>
@@ -46,17 +41,16 @@ const AddTodoForm = () => {
       />
 
 <select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e)=>setSelect(e.target.value)}>
-  <option value="gym">GYM</option>
-  <option value="routine">Routine</option>
-  <option value="home">Home</option>
-  <option value="office">Office</option>
+  <option value="GYM">GYM</option>
+  <option value="Routine">Routine</option>
+  <option value="Home">Home</option>
+  <option value="Office">Office</option>
 </select>
       
       <button type="submit" className="ml-2 p-2 bg-blue-500 text-white">
         Add
       </button>
     </form>
-   {todos &&  <TodoList todos={todos} />}
     </>
   );
 };

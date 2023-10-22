@@ -1,11 +1,16 @@
+
 import TodoItem from './TodoItem';
 
-const TodoList = ({ todos }) => (
+
+
+const TodoList =({ todos }) => {
+return(
   <ul className="divide-y divide-gray-300">
-    {todos?.map(todo => (
-      <TodoItem key={todo.id} todo={todo} />
+    {todos && todos?.map((todo) => (
+      <TodoItem key={todo._id} todo={todo} />
     ))}
   </ul>
 );
+    }
 
 export default TodoList;
