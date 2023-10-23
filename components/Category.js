@@ -52,21 +52,17 @@ const Category = () => {
   return (
     <div className="flex flex-col gap-6 items-center justify-center p-4">
       <div className="flex items-center justify-center gap-4 w-full">
-        <button
-          className="relative flex items-center justify-center group p-4 bg-blue-500 text-white w-full max-w-md hover:shadow-lg transition duration-300 ease-in-out transform hover:translate-x-1 hover:flex "
-          disabled={!select}
-        >
-          {select && (
-            <>
-              <FaTrash
-                className="text-red-500 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition duration-300 ease-in-out mr-2"
-                onClick={handleDelete}
-              />
-              <span className="block flex-1">{select}</span>
-            </>
-          )}
-          {!select && 'Select category of todo'}
-        </button>
+      <button
+  className="relative flex items-center justify-center group p-4 bg-blue-500 text-white w-full max-w-md hover:shadow-lg transition duration-300 ease-in-out transform hover:translate-x-1"
+  disabled={!select}
+>
+  <FaTrash
+    className={`text-red-500 ${select ? 'opacity-100' : 'opacity-0'} group-hover:scale-110 transition duration-300 ease-in-out mr-2`}
+    onClick={handleDelete}
+  />
+  <span className="block flex-1">{select || 'Select todo'}</span>
+</button>
+
         <AiOutlineArrowRight className="h-6 w-6" />
         <select
           value={select}

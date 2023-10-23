@@ -29,14 +29,14 @@ const TodoItem = ({ todo, onDelete }) => {
 
   return (
     <li className="group p-4 bg-white rounded-md shadow-md flex items-center justify-between mb-4 transition duration-300 ease-in-out transform hover:scale-105">
-      <span className="text-lg">{todo.taskname}</span>
-      <FaTrash
-        className={`text-red-500 cursor-pointer transition duration-300 ease-in-out ${
-          isDeleting ? 'opacity-50' : 'opacity-0 group-hover:opacity-100 group-hover:scale-110'
-        }`}
-        onClick={handleDelete}
-      />
-    </li>
+  <span className="text-lg">{todo.taskname}</span>
+  <FaTrash
+    className={`text-red-500 cursor-pointer transition duration-300 ease-in-out ${
+      isDeleting ? 'opacity-50' : 'opacity-100 group-hover:scale-110'
+    }`}
+    onClick={handleDelete}
+  />
+</li>
   );
 };
 
