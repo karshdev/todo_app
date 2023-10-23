@@ -52,10 +52,10 @@ const Category = () => {
   return (
     <div className='flex flex-col gap-3 items-center justify-center'>
     <div className='flex items-center justify-center gap-3'>
-    <button className="group relative">
+    <button className="group relative p-3 bg-blue-50 max-w-max">
   {select ? select : "Select category of todo"}
   {select && (
-    <FaTrash className="text-blue-500 transition hover:scale-110 absolute right-0 opacity-0 group-hover:opacity-100" onClick={handleDelete}/>
+    <FaTrash className="text-red-500 transition hover:scale-110 absolute right-0 opacity-0 group-hover:opacity-100" onClick={handleDelete}/>
   )}
   </button>
       <select value={select} onChange={handleChange}>

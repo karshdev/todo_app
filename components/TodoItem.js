@@ -26,7 +26,7 @@ return (
     <span className='text-lg'>
       {todo.taskname}
     </span>
-    <FaTrash className='text-blue-500 transition hover:scale-110' onClick={handleDelete}/>
+    <FaTrash className='text-red-500 transition hover:scale-110' onClick={handleDelete}/>
   </li>
 );
 }
