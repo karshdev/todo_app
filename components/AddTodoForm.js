@@ -1,14 +1,17 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { StateContext } from '../context/contextapi';
 
 
 
 
 const AddTodoForm = () => {
+  const {arr,setArr}=useContext(StateContext)
   const [text, setText] = useState('');
   const [category, setCategory] = useState('')
-  const[arr,setArr]=useState([])
   const [select, setSelect] = useState('');
+
+
   const handleAddCategory=async ()=>{
     try{
 const response=await fetch(`/api/category`,{
@@ -29,14 +32,32 @@ if(res.message==="added"){
     }else{
       console.log("Someerror");
     }
-   
-   
-
   }catch(err){
     console.log("error catch block");
   }
 }
-console.log(arr);
+
+const getAllCat=async()=>{
+  try{
+    const response=await fetch(`/api/category`)
+    const res=await response.json()
+console.log(res);
+    if(res.length>=1){
+      setArr(res)
+   
+      setCategory('');
+        }else{
+          console.log("Some error");
+        }
+      }catch(err){
+        console.log("error catch block");
+      }
+}
+console.log("Arr",arr);
+useEffect(()=>{
+getAllCat()
+},[])
+
   const handleSubmit = async (e) => {
     if(!text){
       return false;
