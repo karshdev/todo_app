@@ -14,7 +14,7 @@ if(addTodo){
 }
 return NextResponse.json({message:"failed"},{status:401})
   }catch(err){
-    console.log(err);
+ 
     return NextResponse.json({message:"error"},{status:200})
   }
 }
