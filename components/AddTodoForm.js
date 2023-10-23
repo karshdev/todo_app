@@ -9,15 +9,34 @@ const AddTodoForm = () => {
   const [category, setCategory] = useState('')
   const[arr,setArr]=useState([])
   const [select, setSelect] = useState('');
-  const handleAddCategory=()=>{
-    setArr((prev)=>[
-      ...prev,
-      category
-    ])
-    setCategory('');
+  const handleAddCategory=async ()=>{
+    try{
+const response=await fetch(`/api/category`,{
+method:"POST",
+headers: {
+  'Content-Type': 'application/json',
+},
+body: JSON.stringify({ name:category})
+})
+const res=await response.json()
+if(res.message==="added"){
+  console.log("Result",res);
+  setArr((prev)=>[
+    ...prev,
+    res.addCategory.name
+  ])
+  setCategory('');
+    }else{
+      console.log("Someerror");
+    }
+   
+   
 
+  }catch(err){
+    console.log("error catch block");
   }
-
+}
+console.log(arr);
   const handleSubmit = async (e) => {
     if(!text){
       return false;
@@ -56,13 +75,13 @@ const AddTodoForm = () => {
         placeholder="Add a new category"
         className="p-2 border border-gray-300 w-[50%] "
       />
-      <button onClick={handleAddCategory}>Add category</button>
+      <button type="button" onClick={handleAddCategory}>Add category</button>
       </div>
 
 
-<select className='p-2 border border-gray-300 w-[50%]'  onChange={(e)=>setSelect(e.target.value)}>
+<select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e)=>setSelect(e.target.value)}>
 <option value="" disabled selected>Your Categories</option>
-{arr.map((category) => (
+{arr.length>=1 && arr?.map((category) => (
     <option key={category} value={category}>
       {category}
     </option>
