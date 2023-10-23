@@ -23,14 +23,16 @@ body: JSON.stringify({ name:category})
 })
 const res=await response.json()
 if(res.message==="added"){
-
   setArr((prev)=>[
     ...prev,
     res.addCategory.name
   ])
   setCategory('');
+    }else if(res.message==="exists"){
+     console.log("Already exists")
+     setCategory('');
     }else{
-     
+      setCategory('');
     }
   }catch(err){
 
