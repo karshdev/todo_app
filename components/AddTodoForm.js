@@ -23,17 +23,17 @@ body: JSON.stringify({ name:category})
 })
 const res=await response.json()
 if(res.message==="added"){
-  console.log("Result",res);
+
   setArr((prev)=>[
     ...prev,
     res.addCategory.name
   ])
   setCategory('');
     }else{
-      console.log("Someerror");
+     
     }
   }catch(err){
-    console.log("error catch block");
+
   }
 }
 
@@ -41,19 +41,19 @@ const getAllCat=async()=>{
   try{
     const response=await fetch(`/api/category`)
     const res=await response.json()
-console.log(res);
+
     if(res.length>=1){
       setArr(res)
    
       setCategory('');
         }else{
-          console.log("Some error");
+       
         }
       }catch(err){
-        console.log("error catch block");
+     
       }
 }
-console.log("Arr",arr);
+
 useEffect(()=>{
 getAllCat()
 },[])
@@ -74,7 +74,7 @@ getAllCat()
         if(res.message==="added"){
        window.location.reload()
       }else{
-         console.log("Some error");
+         
       }
   };
 

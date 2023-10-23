@@ -8,7 +8,7 @@ export async function GET(req,{params}){
      const findbyCat=await Todo.find({
         category:params.slug
      })
-     console.log("findByCat",findbyCat);
+   
 if(findbyCat.length>=1){
     return NextResponse.json(findbyCat,{status:200})
 }

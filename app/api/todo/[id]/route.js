@@ -4,7 +4,7 @@ import Todo from "../../../../models/todo.js";
 
 
 export async function DELETE(req,{params}){
-    console.log(params.id);
+
     await connectMongoDB()
     try{
     const deleteTodo=await Todo.findByIdAndDelete({_id:params.id})

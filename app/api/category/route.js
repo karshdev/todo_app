@@ -4,7 +4,7 @@ import Category  from "../../../models/category.js";
 export async function POST(req) {
   await connectmongoDB()
   const {name}=await req.json()
-  console.log("Name from backend",name);
+
   try{
 const addCategory=await Category.create({
   name
@@ -14,7 +14,7 @@ if(addCategory){
 }
 return NextResponse.json({message:"failed"},{status:401})
   }catch(err){
-    console.log(err);
+ 
     return NextResponse.json({message:"error"},{status:200})
   }
 }
@@ -28,10 +28,22 @@ export async function GET(req) {
   }
   return NextResponse.json({message:"failed"},{status:401})
     }catch(err){
-      console.log(err);
+      
       return NextResponse.json({message:"error"},{status:200})
     }
   }
+  export async function DELETE(req){
+    const {searchParams}=new URL(req.url)
+    const name=searchParams.get("name")
+    await connectmongoDB()
+    try{
+    const deleteTodo=await Category.findOneAndDelete({name})
+
+    return NextResponse.json({ message: "deleted" }, { status: 200 })
+    }catch(err){
+        return NextResponse.json({message:"Error"},{status:500})
+    }
+}
   
 
 
