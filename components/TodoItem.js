@@ -1,8 +1,8 @@
-// TodoItem.js
+"use client"
 import React, { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
-const TodoItem = ({ todo, onDelete }) => {
+const TodoItem = ({ todo, onDelete, onToggle, isChecked }) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
@@ -16,7 +16,7 @@ const TodoItem = ({ todo, onDelete }) => {
         body: JSON.stringify({ id: todo._id }),
       });
       if (response.ok) {
-        onDelete(todo._id); // Notify parent component to remove the item from the state
+        onDelete(todo._id);
       } else {
         console.error('Error deleting:');
       }
@@ -28,15 +28,18 @@ const TodoItem = ({ todo, onDelete }) => {
   };
 
   return (
-    <li className="group p-4 bg-white rounded-md shadow-md flex items-center justify-between mb-4 transition duration-300 ease-in-out transform hover:scale-105">
-  <span className="text-lg">{todo.taskname}</span>
-  <FaTrash
-    className={`text-red-500 cursor-pointer transition duration-300 ease-in-out ${
-      isDeleting ? 'opacity-50' : 'opacity-100 group-hover:scale-110'
-    }`}
-    onClick={handleDelete}
-  />
-</li>
+    <li className="group p-4 bg-white rounded-md shadow-md  w-[100%] flex items-center justify-between mb-4 transition duration-300 ease-in-out transform hover:scale-105">
+      <span className={`text-lg`}>{todo.taskname}</span>
+      <div className='flex items-center justify-center gap-3'>
+        <input type="checkbox" checked={isChecked} onChange={onToggle} />
+        <FaTrash
+          className={`text-red-500 cursor-pointer transition duration-300 ease-in-out ${
+            isDeleting ? 'opacity-50' : 'opacity-100 group-hover:scale-110'
+          }`}
+          onClick={handleDelete}
+        />
+      </div>
+    </li>
   );
 };
 
