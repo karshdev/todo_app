@@ -82,40 +82,59 @@ getAllCat()
 
   return (
     <>
-    <form onSubmit={e=>e.preventDefault()} className="mt-4 w-[100%] flex items-center justify-center flex-col gap-3">
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="mt-4 w-full max-w-lg mx-auto flex items-center justify-center flex-col gap-4"
+    >
       <input
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a new todo..."
-        className="p-2 border border-gray-300 w-[50%] "
+        className="p-3 border border-gray-300 w-full rounded"
       />
-      <div className='flex items-center justify-center gap-2'>
-       <input
-        type="text"
-        value={category}
-        onChange={(e)=> setCategory(e.target.value)}
-        placeholder="Add a new category"
-        className="p-2 border border-gray-300 w-[50%] "
-      />
-      <button type="button" onClick={handleAddCategory}>Add category</button>
+      <div className="flex items-center w-[100%] justify-between gap-4">
+        <input
+          type="text"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          placeholder="Add a new category"
+          className="p-3 border border-gray-300  rounded w-[60%]" 
+        />
+        <button
+          type="button"
+          onClick={handleAddCategory}
+          className="p-3 bg-green-500 text-white rounded w-[40%]"
+        >
+          Add category
+        </button>
       </div>
 
+      <select
+        className="p-3 border border-gray-300 w-full rounded"
+        value={select}
+        onChange={(e) => setSelect(e.target.value)}
+      >
+        <option value="" disabled selected>
+          Your Categories
+        </option>
+        {arr.length >= 1 &&
+          arr?.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+      </select>
 
-<select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e)=>setSelect(e.target.value)}>
-<option value="" disabled selected>Your Categories</option>
-{arr.length>=1 && arr?.map((category) => (
-    <option key={category} value={category}>
-      {category}
-    </option>
-  ))}
-</select>
-      
-      <button type="button" onClick={handleSubmit} className="ml-2 p-2 bg-blue-500 text-white">
+      <button
+        type="button"
+        onClick={handleSubmit}
+        className="p-3 bg-blue-500 text-white rounded w-[50%]"
+      >
         Add
       </button>
     </form>
-    </>
+  </>
   );
 };
 
