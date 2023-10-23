@@ -22,12 +22,10 @@ const TodoItem = ({ todo}) => {
     }
     
 return (
-  <li className="group/item  p-1 font-medium text-[15px] rounded-[10px] hover:bg-blue-50 cursor-pointer justify-center flex fow gap-2 items-center">
-    <span className='text-lg'>
-      {todo.taskname}
-    </span>
-    <FaTrash className='text-blue-500 transition hover:scale-110' onClick={handleDelete}/>
-  </li>
+  <li className="group/item p-4 border border-gray-300 rounded-lg hover:bg-blue-50 cursor-pointer flex items-center justify-between">
+      <span className="text-lg font-medium">{todo.taskname}</span>
+      <FaTrash className="text-red-500 transition hover:scale-110" onClick={handleDelete} />
+    </li>
 );
 }
 

@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server";
 import connectmongoDB from '../../../libs/mongodb'
 import Category  from "../../../models/category.js";
+import Todo from "../../../models/todo.js";
 export async function POST(req) {
   await connectmongoDB()
   const {name}=await req.json()
 
   try{
+    if(name){
+        const findCat=await Category.find({
+            name
+        })
+        if(findCat.length>=1){
+            return NextResponse.json({message:"exists"},{status:200})
+        }
+    }
 const addCategory=await Category.create({
   name
 })
@@ -37,7 +46,8 @@ export async function GET(req) {
     const name=searchParams.get("name")
     await connectmongoDB()
     try{
-    const deleteTodo=await Category.findOneAndDelete({name})
+    const deleteCat=await Category.findOneAndDelete({name})
+    const deleteTodo=await Todo.deleteMany({category:name})
 
     return NextResponse.json({ message: "deleted" }, { status: 200 })
     }catch(err){

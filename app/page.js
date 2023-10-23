@@ -9,11 +9,11 @@ const Home = () => {
 
  
   return (
-    <div className="max-w-2xl mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-4 text-center">TODO APP</h1>
-      <AddTodoForm />
-       <Category />
-    </div>
+    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-md shadow-lg">
+    <h1 className="text-4xl font-bold mb-8 text-center text-indigo-600">TODO APP</h1>
+    <AddTodoForm />
+    <Category />
+  </div>
   );
 };
 
