@@ -6,10 +6,19 @@ import React, { useState } from 'react';
 
 const AddTodoForm = () => {
   const [text, setText] = useState('');
-  const [select, setSelect] = useState('GYM');
-  
+  const [category, setCategory] = useState('')
+  const[arr,setArr]=useState([])
+  const [select, setSelect] = useState('');
+  const handleAddCategory=()=>{
+    setArr((prev)=>[
+      ...prev,
+      category
+    ])
+    setCategory('');
+
+  }
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
     if(!text){
       return false;
     }
@@ -31,7 +40,7 @@ const AddTodoForm = () => {
 
   return (
     <>
-    <form onSubmit={handleSubmit} className="mt-4 w-[100%] flex items-center justify-center flex-col gap-3">
+    <form onSubmit={e=>e.preventDefault()} className="mt-4 w-[100%] flex items-center justify-center flex-col gap-3">
       <input
         type="text"
         value={text}
@@ -39,15 +48,28 @@ const AddTodoForm = () => {
         placeholder="Add a new todo..."
         className="p-2 border border-gray-300 w-[50%] "
       />
+      <div className='flex items-center justify-center gap-2'>
+       <input
+        type="text"
+        value={category}
+        onChange={(e)=> setCategory(e.target.value)}
+        placeholder="Add a new category"
+        className="p-2 border border-gray-300 w-[50%] "
+      />
+      <button onClick={handleAddCategory}>Add category</button>
+      </div>
 
-<select className='p-2 border border-gray-300 w-[50%]' value={select} onChange={(e)=>setSelect(e.target.value)}>
-  <option value="GYM">GYM</option>
-  <option value="Routine">Routine</option>
-  <option value="Home">Home</option>
-  <option value="Office">Office</option>
+
+<select className='p-2 border border-gray-300 w-[50%]'  onChange={(e)=>setSelect(e.target.value)}>
+<option value="" disabled selected>Your Categories</option>
+{arr.map((category) => (
+    <option key={category} value={category}>
+      {category}
+    </option>
+  ))}
 </select>
       
-      <button type="submit" className="ml-2 p-2 bg-blue-500 text-white">
+      <button type="button" onClick={handleSubmit} className="ml-2 p-2 bg-blue-500 text-white">
         Add
       </button>
     </form>
